@@ -10,6 +10,11 @@ export default function App() {
 		let r = parseFloat(peso) / (parseFloat(altura)*parseFloat(altura));
 		setResultado(r);
 	}
+	function Limpar (){
+		setPeso("");
+		setAltura("");
+		setResultado("");
+	}
   return (
     <View style={styles.container}>
 		  <View style={styles.titulo}>
@@ -25,13 +30,13 @@ export default function App() {
 		  </View>
 		  
 		  <View style={styles.bloco}>
-		  	<Text style={styles.label}> Digite seu peso: </Text>
+		  	<Text style={styles.label}>Peso: </Text>
 			  <TextInput 
 				  style={styles.input}
 				  value={peso}
 				  onChangeText={(peso)=>setPeso(peso)}
 			  />
-			  <Text style={styles.label}> Digite sua altura: </Text>
+			  <Text style={styles.label}>Altura: </Text>
 			  <TextInput 
 				  style={styles.input}
 				  value={altura}
@@ -42,6 +47,9 @@ export default function App() {
 		  <View style={styles.botResul}>
 			  <TouchableOpacity style={styles.botao} onPress={Calcular}>
 				  <Text style={styles.txtBotao}>Calcular</Text>
+			  </TouchableOpacity>
+			  <TouchableOpacity style={styles.botao} onPress={Limpar}>
+				  <Text style={styles.txtBotao}>Limpar</Text>
 			  </TouchableOpacity>
 			  <Text style={styles.label}> Resultado: {resultado}</Text>
 		  </View>
@@ -77,14 +85,12 @@ const styles = StyleSheet.create({
 	input:{
 	borderWidth:2,
 	fontSize:20,
-	width:50,
+	width:100,
 	borderRadius:10,
 },
 	bloco:{
 		alignItems:'center',
 		marginTop:30,	
-		flexDirection:'row',
-		margin:'auto',
 	},
 	botao:{
 	backgroundColor:'#00adc2',
