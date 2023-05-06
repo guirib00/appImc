@@ -49,7 +49,7 @@ export default function App() {
 				  <Text style={styles.txtBotao}>Calcular</Text>
 			  </TouchableOpacity>
 			  <TouchableOpacity style={styles.botao} onPress={Limpar}>
-				  <Text style={styles.txtBotao}>Limpar</Text>
+				  <Text style={styles.txtBotao}>Limpar&</Text>
 			  </TouchableOpacity>
 			  <Text style={styles.label}> Resultado: {resultado}</Text>
 		  </View>
