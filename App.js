@@ -5,17 +5,32 @@ export default function App() {
 	const [peso, setPeso] = useState(0);
 	const [altura, setAltura] = useState(0);
 	const [resultado, setResultado] = useState(0);
+	const [imc, setImc] = useState("");
 	
 	function Calcular (){
 		let r = parseFloat(peso) / (parseFloat(altura)*parseFloat(altura));
+		if (r<=16.9){
+			setImc("- Muito abaixo do peso");
+		}else if(r >= 17 && r <= 24.9){
+			setImc("- Peso normal");
+		}else if(r >= 25 && r <=29.9){
+			setImc("- Acima do peso");
+		}else if(r >= 30 && r <=34.9){
+			setImc("- Obesidade grau I");
+		}else if(r >= 35 && r <= 40){
+			setImc("- Obesidade grau II");
+		}else{
+			setImc("- Obesidade grau III");
+		}
 		setResultado(r);
 	}
 	function Limpar (){
-		setPeso("");
-		setAltura("");
-		setResultado("");
+		setPeso(0);
+		setAltura(0);
+		setResultado(0);
+		setImc("");
 	}
-  return (
+  	return (
     <View style={styles.container}>
 		  <View style={styles.titulo}>
 		  	<Text style={styles.textoTitulo}>CALCULADORA IMC</Text>
@@ -44,14 +59,18 @@ export default function App() {
 			  />
 		  </View>
 		  
+		  <View style={styles.boxResul}>
+			  <Text style={styles.resul}> Resultado: {resultado} {imc}</Text>
+		  </View>
+		  
 		  <View style={styles.botResul}>
 			  <TouchableOpacity style={styles.botao} onPress={Calcular}>
 				  <Text style={styles.txtBotao}>Calcular</Text>
 			  </TouchableOpacity>
 			  <TouchableOpacity style={styles.botao} onPress={Limpar}>
-				  <Text style={styles.txtBotao}>Limpar&</Text>
+				  <Text style={styles.txtBotao}>Limpar</Text>
 			  </TouchableOpacity>
-			  <Text style={styles.label}> Resultado: {resultado}</Text>
+			  
 		  </View>
 	  </View>
 		  
@@ -90,7 +109,7 @@ const styles = StyleSheet.create({
 },
 	bloco:{
 		alignItems:'center',
-		marginTop:30,	
+		marginTop:20,	
 	},
 	botao:{
 	backgroundColor:'#00adc2',
@@ -106,5 +125,12 @@ const styles = StyleSheet.create({
 	botResul:{
 		alignItems:'center',
 		margin:'auto',
+	},
+	boxResul:{
+		textAlign:'center',
+		marginTop:100,
+	},
+	resul:{
+		fontSize:30,
 	}
 });
